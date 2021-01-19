@@ -3,6 +3,9 @@ import React, { Component} from "react";
 import logo from "./logo.svg";
 import "./App.css";
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
+
+const fetch = require('node-fetch');
+
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const redirectUri = "http://localhost:3000";
@@ -52,6 +55,12 @@ class App extends Component {
       });
     }
   }
+
+ getTopTracks(token){
+  fetch('https://api.spotify.com/v1/me/top/tracks?limit=50')
+}
+
+
 render() {
   return (
     <div className="App">
