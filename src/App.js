@@ -10,6 +10,7 @@ const fetch = require('node-fetch');
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const redirectUri = "http://localhost:3000";
 const scopes = [
+  "user-top-read",
   "user-read-currently-playing",
   "user-read-playback-state",
 ];
