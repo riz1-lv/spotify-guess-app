@@ -57,17 +57,25 @@ class App extends Component {
     }
   }
 
- getTopTracks(token){
-  fetch('https://api.spotify.com/v1/me/top/tracks?limit=50')
+async getTopTracks(token){
+  console.log("Bearer " + token)
+  const response = await fetch("https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50", {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json"
+    }
+  })
+  const data = await response.json();
+  console.log(data)
 }
-
-
 render() {
   return (
     <div className="App">
       <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       {!this.state.token && (
+        
         <a
           className="btn btn--loginApp-link"
           href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
@@ -75,6 +83,9 @@ render() {
           Login to Spotify
         </a>
       )}
+    {this.state.token && (
+      <button onClick={() => this.getTopTracks(this.state.token)}>Click me</button>
+    )}
     {/**this.state.token && (
         // Spotify Player Will Go Here In the Next Step
     )*/}
