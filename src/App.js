@@ -1,32 +1,14 @@
-import React, { Component} from "react";
-//import hash from "./hash";
+import React, {useEffect,useState} from "react";
+import hash from "./hash.js";
 import logo from "./logo.svg";
 import "./App.css";
-export const authEndpoint = 'https://accounts.spotify.com/authorize';
-
-const fetch = require('node-fetch');
+import {authEndpoint, clientId, redirectUri, scopes } from './config.js'
+import {getTopTracks} from './spotifyData.js'
 
 // Replace with your app's client ID, redirect URI and desired scopes
-const clientId = process.env.REACT_APP_CLIENT_ID;
-const redirectUri = "http://localhost:3000";
-const scopes = [
-  "user-top-read",
-  "user-read-currently-playing",
-  "user-read-playback-state",
-];
-console.log(clientId);
 // Get the hash of the url
-const hash = window.location.hash
-  .substring(1)
-  .split("&")
-  .reduce(function(initial, item) {
-    if (item) {
-      var parts = item.split("=");
-      initial[parts[0]] = decodeURIComponent(parts[1]);
-    }
-    return initial;
-  }, {});
-window.location.hash = "";
+
+/** 
 class App extends Component {
 
   constructor() {
@@ -46,36 +28,38 @@ class App extends Component {
   };
 
   }
-  componentDidMount() {
+  */
+ const App = () => {
+  const [authToken,setAuthToken] = useState({token:null});
+  const [currentSong,setCurrentSong] = useState({
+  item: {
+    album: {
+      images: [{ url: "" }]
+    },
+    name: "",
+    artists: [{ name: "" }],
+    duration_ms:0,
+  },
+  is_playing: "Paused",
+  progress_ms: 0
+});
+  useEffect(()=>{
     // Set token
+    console.log(hash);
     let _token = hash.access_token;
     if (_token) {
       // Set token
-      this.setState({
+      setAuthToken({
         token: _token
       });
     }
-  }
+  },[])
 
-async getTopTracks(token){
-  console.log("Bearer " + token)
-  const response = await fetch("https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50", {
-    headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json"
-    }
-  })
-  const data = await response.json();
-  console.log(data)
-}
-render() {
   return (
     <div className="App">
       <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      {!this.state.token && (
-        
+      {!authToken.token && (
         <a
           className="btn btn--loginApp-link"
           href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
@@ -83,15 +67,15 @@ render() {
           Login to Spotify
         </a>
       )}
-    {this.state.token && (
-      <button onClick={() => this.getTopTracks(this.state.token)}>Click me</button>
+    {authToken.token && (
+      <button onClick={() => getTopTracks(authToken.token)}>Click me</button>
     )}
+    <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
     {/**this.state.token && (
         // Spotify Player Will Go Here In the Next Step
     )*/}
       </header>
     </div>
   );
-  }
 }
 export default App;
