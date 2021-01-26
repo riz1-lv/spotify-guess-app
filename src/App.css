@@ -6,6 +6,13 @@
   height: 40vmin;
   pointer-events: none;
 }
+.player{
+  display:none;
+}
+.player.active{
+  display:inline-block;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

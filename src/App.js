@@ -31,8 +31,10 @@ class App extends Component {
   */
  const App = () => {
   const [authToken,setAuthToken] = useState({token:null});
+  const [render,setRender] = useState(false);
   const [currentSong,setCurrentSong] = useState({
   item: {
+    song:'',
     album: {
       images: [{ url: "" }]
     },
@@ -68,12 +70,19 @@ class App extends Component {
         </a>
       )}
     {authToken.token && (
-      <button onClick={() => getTopTracks(authToken.token)}>Click me</button>
+      <button onClick={() => {setCurrentSong({ song: getTopTracks(authToken.token)})}}>Click me</button>
     )}
     <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
-    {/**this.state.token && (
-        // Spotify Player Will Go Here In the Next Step
-    )*/}
+      {/** 
+      <div className={authToken.token ? 'player active' : 'player'}>
+      <button onClick={()=>setRender(true)}>play 30 sec clip</button>
+        {render && (
+          <video controls name="media">
+          <source src={currentSong.song.items["0"].preview_url} />
+        </video>
+        )}
+      </div>
+        */}
       </header>
     </div>
   );
