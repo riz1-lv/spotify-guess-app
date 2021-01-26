@@ -70,10 +70,10 @@ class App extends Component {
         </a>
       )}
     {authToken.token && (
-      <button onClick={() => {setCurrentSong({ song: getTopTracks(authToken.token)})}}>Click me</button>
+      <button onClick={() => {getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))}}>Click me</button>
     )}
     <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
-      {/** 
+      
       <div className={authToken.token ? 'player active' : 'player'}>
       <button onClick={()=>setRender(true)}>play 30 sec clip</button>
         {render && (
@@ -82,7 +82,7 @@ class App extends Component {
         </video>
         )}
       </div>
-        */}
+        
       </header>
     </div>
   );
