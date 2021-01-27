@@ -26,9 +26,9 @@ class App extends Component {
     is_playing: "Paused",
     progress_ms: 0
   };
-
   }
   */
+
  const App = () => {
   const [authToken,setAuthToken] = useState({token:null});
   const [render,setRender] = useState(false);
@@ -59,7 +59,7 @@ class App extends Component {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       {!authToken.token && (
         <a
@@ -73,7 +73,6 @@ class App extends Component {
       <button onClick={() => {getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))}}>Click me</button>
     )}
     <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
-      
       <div className={authToken.token ? 'player active' : 'player'}>
       <button onClick={()=>setRender(true)}>play 30 sec clip</button>
         {render && (
@@ -82,8 +81,7 @@ class App extends Component {
         </video>
         )}
       </div>
-        
-      </header>
+      </div>
     </div>
   );
 }
