@@ -1,6 +1,5 @@
 import React, {useEffect,useState} from "react";
 import hash from "./hash.js";
-import logo from "./logo.svg";
 import "./App.css";
 import {getTopTracks} from './spotifyData.js'
 import Login from "./components/Login.js";
@@ -41,13 +40,17 @@ class App extends Component {
 });
 
 const increment = () =>{
+  if(songNum < 49){
   setSongNum(songNum + 1)
   console.log(songNum);
+  }
 }
 
 const decrement = ()=>{
+  if(songNum > 0){
   setSongNum(songNum - 1);
   console.log(songNum);
+  }
 }
 
 useEffect(()=>{
@@ -58,22 +61,24 @@ useEffect(()=>{
       // Set token
       setAuthToken({
         token: _token
-      });
+      }); 
     }
-    
-  },[])
+    if(authToken.token){
+      getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))
+    }
+  },[authToken.token])
 
   return (
     <div className="App">
       <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
       {!authToken.token && (
         <Login/>
       )}
-    {authToken.token && (
-      <button onClick={() => {getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))}}>Click me</button>
+    {authToken.token && (<>
+      <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
+    </>  
     )}
-    <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
+   
       <div className={authToken.token ? 'player active' : 'player'}>
       <button onClick={()=>{setRender(true); console.log(songNum)}}>play 30 sec clip</button>
         {render && <>
