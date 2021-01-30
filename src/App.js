@@ -5,29 +5,6 @@ import {getTopTracks} from './spotifyData.js'
 import Login from "./components/Login.js";
 import Player from "./components/Player.js";
 
-// Replace with your app's client ID, redirect URI and desired scopes
-// Get the hash of the url
-
-/** 
-class App extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      token: null,
-    item: {
-      album: {
-        images: [{ url: "" }]
-      },
-      name: "",
-      artists: [{ name: "" }],
-      duration_ms:0,
-    },
-    is_playing: "Paused",
-    progress_ms: 0
-  };
-  }
-  */
 
  const App = () => {
   const [authToken,setAuthToken] = useState({token:null});
@@ -78,7 +55,6 @@ useEffect(()=>{
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
     </>  
     )}
-   
       <div className={authToken.token ? 'player active' : 'player'}>
       <button onClick={()=>{setRender(true); console.log(songNum)}}>play 30 sec clip</button>
         {render && <>

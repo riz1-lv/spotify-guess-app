@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+
 import {authEndpoint, clientId, redirectUri, scopes } from '../config.js'
-import hash from "../hash.js";
+
 import { Button } from './Button.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,21 +11,6 @@ import './Login.css'
 
 
 const Login = () => {
-
-const [authToken,setAuthToken] = useState({token:null});
-
-useEffect(()=>{
-// Set token
-
-let _token = hash.access_token;
-if (_token) {
-  // Set token
-  setAuthToken({
-    token: _token
-  });
-}
-},[])
-  
   
   return (<div className="login-element">
     <header>
