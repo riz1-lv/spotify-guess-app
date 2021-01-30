@@ -4,6 +4,7 @@ import "./App.css";
 import {getTopTracks} from './spotifyData.js'
 import Login from "./components/Login.js";
 import Player from "./components/Player.js";
+import Quiz from "./components/Quiz.js";
 
 
  const App = () => {
@@ -58,6 +59,7 @@ useEffect(()=>{
       <div className={authToken.token ? 'player active' : 'player'}>
       <button onClick={()=>{setRender(true); console.log(songNum)}}>play 30 sec clip</button>
         {render && <>
+          <Quiz/>
           <Player key={songNum} source={currentSong.song.items[songNum].preview_url}/>
           <button onClick={()=>increment()}>next Song</button>
           <button onClick={()=>decrement()}>prev Song</button>
