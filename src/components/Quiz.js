@@ -4,7 +4,7 @@ import Player from './Player'
 import './Quiz.css'
 
 
-const Quiz = () => {
+const Quiz = (props) => {
   return (
     <div>
       <header>
@@ -12,9 +12,9 @@ const Quiz = () => {
           Guess Your Spotify
         </h1>
       </header>
-      <Player/>
-      <Button/>
-      <Button/>
+      <Player source={props.source} />
+      <Button onClick={props.inc}>next Song</Button>
+      <Button onClick={props.dec}>prev Song</Button>
       <Button/>
       <Button/>
 

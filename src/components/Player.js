@@ -6,7 +6,7 @@ const Player = (props) => {
   return (
     <div>
        <video controls name="media">
-          <source src={props.source} />
+          <source key={props.key} src={props.source} />
         </video>
     </div>
   )

@@ -52,18 +52,16 @@ useEffect(()=>{
       {!authToken.token && (
         <Login/>
       )}
+      {render && <>
+          <Quiz key={songNum} dec={decrement} inc={increment} source={currentSong.song.items[songNum].preview_url} />
+        </>}
     {authToken.token && (<>
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
-    </>  
+    </> 
     )}
       <div className={authToken.token ? 'player active' : 'player'}>
       <button onClick={()=>{setRender(true); console.log(songNum)}}>play 30 sec clip</button>
-        {render && <>
-          <Quiz/>
-          <Player key={songNum} source={currentSong.song.items[songNum].preview_url}/>
-          <button onClick={()=>increment()}>next Song</button>
-          <button onClick={()=>decrement()}>prev Song</button>
-        </>}
+        
       </div>
       </div>
     </div>
