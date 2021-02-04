@@ -13,4 +13,3 @@ export async function getTopTracks(token){
   return(data);
 }
 
-//getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))

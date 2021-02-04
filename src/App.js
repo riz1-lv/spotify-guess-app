@@ -10,7 +10,7 @@ import Quiz from "./components/Quiz.js";
  const App = () => {
   const [authToken,setAuthToken] = useState({token:null});
   const [render,setRender] = useState(false);
-  const [songNum, setSongNum] = useState(0);
+  const [songNum, setSongNum] = useState(Math.floor(Math.random()*50));
   const [currentSong,setCurrentSong] = useState({
   item: {
     song:''
@@ -37,6 +37,7 @@ const random = ()=>{
     Math.floor(Math.random()*50)
   )
 }
+
 useEffect(()=>{
     // Set token
     console.log(hash);
@@ -50,9 +51,7 @@ useEffect(()=>{
     if(authToken.token){
       getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))
     }
-    
-
-  },[authToken.token])
+},[authToken.token])
 
   return (
     <div className="App">
