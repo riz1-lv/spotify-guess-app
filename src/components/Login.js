@@ -30,7 +30,7 @@ const Login = () => {
     </div>
     <div>
       <Button className="btn-twitter" link={'https://twitter.com/intent/tweet?hashtags=GuessYourSpotify&&text=' +
-    encodeURIComponent('"' + "Find out how well you know your top spotify songs" + '" ')} buttonStyle="btn--primary"><FontAwesomeIcon icon={faTwitter} /></Button>
+    encodeURIComponent(' Find out how well you know your top spotify songs ')} buttonStyle="btn--primary"><FontAwesomeIcon icon={faTwitter} /></Button>
     </div>
     </section>
  </div> )

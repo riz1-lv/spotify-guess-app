@@ -1,10 +1,20 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Button } from './Button'
 import Player from './Player'
 import './Quiz.css'
 
 
 const Quiz = (props) => {
+ 
+  const reload = ()=>{props.rand()}
+
+useEffect(() => {
+  if(props.source == null){
+    reload();
+    console.log('loaded a song with a not null preview uri')
+  }
+})
+
   return (
     <div>
       <header>
@@ -15,7 +25,7 @@ const Quiz = (props) => {
       <Player source={props.source} />
       <Button onClick={props.inc}>next Song</Button>
       <Button onClick={props.dec}>prev Song</Button>
-      <Button/>
+      <Button onClick={props.rand}>random Song</Button>
       <Button/>
 
     </div>

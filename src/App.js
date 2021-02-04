@@ -3,7 +3,7 @@ import hash from "./hash.js";
 import "./App.css";
 import {getTopTracks} from './spotifyData.js'
 import Login from "./components/Login.js";
-import Player from "./components/Player.js";
+
 import Quiz from "./components/Quiz.js";
 
 
@@ -31,6 +31,12 @@ const decrement = ()=>{
   }
 }
 
+const random = ()=>{
+  console.log(songNum)
+  setSongNum(
+    Math.floor(Math.random()*50)
+  )
+}
 useEffect(()=>{
     // Set token
     console.log(hash);
@@ -44,6 +50,8 @@ useEffect(()=>{
     if(authToken.token){
       getTopTracks(authToken.token).then(x=>setCurrentSong({song:x}))
     }
+    
+
   },[authToken.token])
 
   return (
@@ -53,7 +61,7 @@ useEffect(()=>{
         <Login/>
       )}
       {render && <>
-          <Quiz key={songNum} dec={decrement} inc={increment} source={currentSong.song.items[songNum].preview_url} />
+          <Quiz key={songNum} rand={random} dec={decrement} inc={increment} source={currentSong.song.items[songNum].preview_url} />
         </>}
     {authToken.token && (<>
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
