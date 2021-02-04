@@ -3,16 +3,24 @@ import { Button } from './Button'
 import Player from './Player'
 import './Quiz.css'
 
-
+const playedSongs = new Set();
 const Quiz = (props) => {
- 
+
+  
   const reload = ()=>{props.rand()}
 
-useEffect(() => {
+  useEffect(() => {
+  
   if(props.source == null){
     reload();
-    console.log('loaded a song with a not null preview uri')
+    console.log(`${props.song} has a null preview uri`)
   }
+  if(playedSongs.has(props.song)){
+    reload();
+    console.log(`song ${props.song} has been played already`)
+  }
+  playedSongs.add(props.song)
+  console.log(playedSongs)
 })
 
   return (
