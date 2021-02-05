@@ -3,7 +3,6 @@ import hash from "./hash.js";
 import "./App.css";
 import {getTopTracks} from './spotifyData.js'
 import Login from "./components/Login.js";
-
 import Quiz from "./components/Quiz.js";
 
 
@@ -60,7 +59,7 @@ useEffect(()=>{
         <Login/>
       )}
       {render && <>
-          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} source={currentSong.song.items[songNum].preview_url} />
+          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} songName={currentSong.song.items[songNum]} />
         </>}
     {authToken.token && (<>
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
