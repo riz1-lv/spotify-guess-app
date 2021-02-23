@@ -26,6 +26,8 @@ const reload = ()=>{props.rand()}
     }
     return artists;
   }
+
+  
 const getButtonTitles = () =>{
   const buttons = [];
   
@@ -55,6 +57,7 @@ const getButtonTitles = () =>{
       <Button onClick={props.inc}>next Song</Button>
       <Button onClick={props.dec}>prev Song</Button>
       <Button onClick={props.rand}>random Song</Button>
+      <Button onClick={props.getRandName}> get random song name </Button>
       <div>
         <Button>{guessSong.name + " - " + getAllArtists()}</Button>
         <Button>{guessSong.name + " - " + getAllArtists()}</Button>

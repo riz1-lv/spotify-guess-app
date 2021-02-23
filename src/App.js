@@ -36,6 +36,12 @@ const random = ()=>{
     Math.floor(Math.random()*50)
   )
 }
+const getRandomSongName = () =>{
+  let randName = currentSong.song.items[Math.floor(Math.random()*50)].name;
+  console.log(randName)
+  return randName;
+}
+
 
 useEffect(()=>{
     // Set token
@@ -59,7 +65,7 @@ useEffect(()=>{
         <Login/>
       )}
       {render && <>
-          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} songName={currentSong.song.items[songNum]} />
+          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songName={currentSong.song.items[songNum]} />
         </>}
     {authToken.token && (<>
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
