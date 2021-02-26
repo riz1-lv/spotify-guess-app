@@ -15,25 +15,31 @@ const reload = ()=>{props.rand()}
    setGuessSong()
   }
   
-  const getAllArtists = () =>{
+  const getAllArtists = (songNumber) =>{
     let artists = "";
-    for(let i = 0; i < guessSong.artists.length; i++){
-      if(i === guessSong.artists.length-1){
-        artists += guessSong.artists[i].name;
+    for(let i = 0; i < props.songList[songNumber].artists.length; i++){
+      if(i === props.songList[songNumber].artists.length-1){
+        artists += props.songList[songNumber].artists[i].name;
       }
       else
-        artists += guessSong.artists[i].name +", ";
+        artists += props.songList[songNumber].artists[i].name +", ";
     }
+    console.log(songNumber)
     return artists;
   }
 
-  
-const getButtonTitles = () =>{
-  const buttons = [];
-  
+  const getSongName = (songNumber) =>{
+    let name = props.songList[songNumber].name;
+    return name;
+  }
+
+  const getButtonTitles = () =>{
+    const buttons = [];
+    
 }
  
-  useEffect(() => {
+  useEffect(() => { 
+    console.log(props.songList[props.song])
   if(props.songName.preview_url == null){
     reload();
     console.log(`${props.song} has a null preview uri`)
@@ -59,13 +65,12 @@ const getButtonTitles = () =>{
       <Button onClick={props.rand}>random Song</Button>
       <Button onClick={props.getRandName}> get random song name </Button>
       <div>
-        <Button>{guessSong.name + " - " + getAllArtists()}</Button>
-        <Button>{guessSong.name + " - " + getAllArtists()}</Button>
-        <Button>{guessSong.name + " - " + getAllArtists()}</Button>
-        <Button>{guessSong.name + " - " + getAllArtists()}</Button>
+        <Button>{getSongName(props.song) + " - " + getAllArtists(props.song)}</Button>
+        <Button>{getSongName(props.song+1) + " - " + getAllArtists(props.song+1)}</Button>
+        <Button>{getSongName(props.song+2) + " - " + getAllArtists(props.song+2)}</Button>
+        <Button>{getSongName(props.song+3) + " - " + getAllArtists(props.song+3)}</Button>
+        <Button>{getSongName(props.song+4) + " - " + getAllArtists(props.song+4)}</Button>
       </div>
-      {console.log(guessSong)}
-      {console.log(guessSong.name + " "+ getAllArtists())}
     </div>
   )
 }

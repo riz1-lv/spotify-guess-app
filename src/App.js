@@ -65,7 +65,7 @@ useEffect(()=>{
         <Login/>
       )}
       {render && <>
-          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songName={currentSong.song.items[songNum]} />
+          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songList={currentSong.song.items} songName={currentSong.song.items[songNum]} />
         </>}
     {authToken.token && (<>
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
