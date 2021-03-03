@@ -1,9 +1,12 @@
 import React,{useEffect, useState} from 'react'
 import { Button } from './Button'
 import Player from './Player'
+import PlayerButton from './PlayerButton';
 import './Quiz.css'
 
 const playedSongs = new Set();
+
+let buttons = [0,0,0,0];
 
 const Quiz = (props) => {
 const reload = ()=>{props.rand()}
@@ -33,12 +36,18 @@ const reload = ()=>{props.rand()}
     return name;
   }
 
-  const getButtonTitles = () =>{
-    const buttons = [];
-    
+  const  getButtonTitles =  () =>{
+    const values=[];
+    for(let i = 0; i < 4; i++){
+      values[i] = Math.floor(Math.random()*50)
+    }
+     buttons =  [...values];
+     console.log(buttons);
+     return buttons;
 }
  
   useEffect(() => { 
+    getButtonTitles()
     console.log(props.songList[props.song])
   if(props.songName.preview_url == null){
     reload();
@@ -50,6 +59,8 @@ const reload = ()=>{props.rand()}
   }
   playedSongs.add(props.song)
   console.log(playedSongs)
+
+  
 })
 
   return (
@@ -63,13 +74,13 @@ const reload = ()=>{props.rand()}
       <Button onClick={props.inc}>next Song</Button>
       <Button onClick={props.dec}>prev Song</Button>
       <Button onClick={props.rand}>random Song</Button>
-      <Button onClick={props.getRandName}> get random song name </Button>
+      
       <div>
-        <Button>{getSongName(props.song) + " - " + getAllArtists(props.song)}</Button>
-        <Button>{getSongName(props.song+1) + " - " + getAllArtists(props.song+1)}</Button>
-        <Button>{getSongName(props.song+2) + " - " + getAllArtists(props.song+2)}</Button>
-        <Button>{getSongName(props.song+3) + " - " + getAllArtists(props.song+3)}</Button>
-        <Button>{getSongName(props.song+4) + " - " + getAllArtists(props.song+4)}</Button>
+        <PlayerButton>{getSongName(props.song) + " \n- " + getAllArtists(props.song)}</PlayerButton>
+        <PlayerButton>{getSongName(buttons[0]) + " \n- " + getAllArtists(buttons[0])}</PlayerButton>
+        <PlayerButton>{getSongName(buttons[1]) + " \n- " + getAllArtists(buttons[1])}</PlayerButton>
+        <PlayerButton>{getSongName(buttons[2]) + " \n- " + getAllArtists(buttons[2])}</PlayerButton>
+        <PlayerButton>{getSongName(buttons[3]) + " \n- " + getAllArtists(buttons[3])}</PlayerButton>
       </div>
     </div>
   )
