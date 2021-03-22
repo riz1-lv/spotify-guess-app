@@ -6,7 +6,7 @@ import './Quiz.css'
 
 const playedSongs = new Set();
 
-let buttons = [0,0,0,0];
+let buttons = [0,1,2,3];
 
 const Quiz = (props) => {
 const reload = ()=>{props.rand()}
@@ -59,9 +59,16 @@ const reload = ()=>{props.rand()}
   }
   playedSongs.add(props.song)
   console.log(playedSongs)
-
-  
 })
+
+const CheckSongName = () =>{
+  /**
+   * if(getSongName(props.song) == props.getChildren())
+   *  changeState(correct);
+   * 
+   */
+
+}
 
   return (
     <div>
