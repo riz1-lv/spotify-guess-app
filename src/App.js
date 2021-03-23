@@ -16,6 +16,8 @@ import Quiz from "./components/Quiz.js";
   }
 });
 
+
+
 const increment = () =>{
   if(songNum < 49){
   setSongNum(songNum + 1)
@@ -41,6 +43,8 @@ const getRandomSongName = () =>{
   console.log(randName)
   return randName;
 }
+
+
 
 
 useEffect(()=>{

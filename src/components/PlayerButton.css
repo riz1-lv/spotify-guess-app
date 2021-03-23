@@ -6,3 +6,9 @@
 }
 .clicked{
 }
+
+.correct-ans.btn--primary{
+    background-color: green;
+    border: 1px solid green;
+    color:#ffffff;
+}
