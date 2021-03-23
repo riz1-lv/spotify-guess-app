@@ -10,6 +10,7 @@ import Quiz from "./components/Quiz.js";
   const [authToken,setAuthToken] = useState({token:null});
   const [render,setRender] = useState(false);
   const [songNum, setSongNum] = useState(Math.floor(Math.random()*50));
+  
   const [currentSong,setCurrentSong] = useState({
   item: {
     song:''
@@ -34,9 +35,11 @@ const decrement = ()=>{
 
 const random = ()=>{
   console.log(songNum)
+  const rand = Math.floor(Math.random()*50)
   setSongNum(
-    Math.floor(Math.random()*50)
+    rand
   )
+  
 }
 const getRandomSongName = () =>{
   let randName = currentSong.song.items[Math.floor(Math.random()*50)].name;
