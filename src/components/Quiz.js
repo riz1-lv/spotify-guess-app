@@ -13,8 +13,10 @@ const reload = ()=>{props.rand();}
 
 
   const [guessSong, setGuessSong] = useState(props.songName);
+  
   const [num, setNum] = useState(false)
 
+  
   const inc = () =>{
     setNum(!num);
   }
@@ -41,14 +43,13 @@ const reload = ()=>{props.rand();}
   }
 
   const  getButtonTitles =  () =>{
-    //const values=[];
+   
     for(let i = 0; i < buttons.length; i++){
         buttons[i] = Math.floor(Math.random()*50)
-      //values[i] = Math.floor(Math.random()*50)
     }
+    if(buttons)
     buttons[Math.floor(Math.random()*5)] = props.song
- // values[0] = props.song;
-    // buttons =  [...values];
+ 
      console.log(buttons);
      
 }
@@ -62,12 +63,14 @@ const reload = ()=>{props.rand();}
 
   useEffect(() => {
     getButtonTitles()
+    
   })
 
   useEffect(() => {
   inc()
   },[])
 
+ 
   useEffect(() => { 
     
     console.log(props.songList[props.song])
@@ -88,28 +91,22 @@ const reload = ()=>{props.rand();}
 
   return (
     <div>
-      <header>
-        <h1>
-          Guess Your Spotify
-        </h1>
-      </header>
+     
       <Player source={props.songList[props.song].preview_url} />
       <Button onClick={props.inc}>next Song</Button>
       <Button onClick={props.dec}>prev Song</Button>
-      <Button onClick={props.rand}>random Song</Button>
+      <Button onClick={()=>{props.rand(); props.incSong()}}>random Song</Button>
       <Button onClick={()=>getButtonTitles}>ra Song</Button>
       <Button onClick={inc}>reset buttn</Button>
       <Button onClick={()=>console.log(buttons)}>buttons</Button>
       
 
       <div>
-        
         <PlayerButton songplaying = {props.songName}>{getButtonInfo([buttons[0]])}</PlayerButton>
         <PlayerButton key={num} songplaying = {props.songName}>{getButtonInfo([buttons[1]])}</PlayerButton>
         <PlayerButton songplaying = {props.songName}>{getButtonInfo(buttons[2])}</PlayerButton>
         <PlayerButton songplaying = {props.songName}>{getButtonInfo(buttons[3])}</PlayerButton>
         <PlayerButton songplaying = {props.songName}>{getButtonInfo(buttons[4])}</PlayerButton>
-       
       </div>
     </div>
   )

@@ -5,9 +5,9 @@ const Player = (props) => {
 
   return (
     <div>
-       <video controls name="media">
+       <audio controls name="media">
           <source key={props.key} src={props.source} />
-        </video>
+        </audio>
     </div>
   )
 }

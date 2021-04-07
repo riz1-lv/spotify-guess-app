@@ -10,6 +10,7 @@ import Quiz from "./components/Quiz.js";
   const [authToken,setAuthToken] = useState({token:null});
   const [render,setRender] = useState(false);
   const [songNum, setSongNum] = useState(Math.floor(Math.random()*50));
+  const [songCount,setSongCount] = useState(0);
   
   const [currentSong,setCurrentSong] = useState({
   item: {
@@ -17,6 +18,14 @@ import Quiz from "./components/Quiz.js";
   }
 });
 
+
+if(songCount===12){
+  setRender(false)
+}
+
+const incSongCount = () =>{
+  setSongCount(songCount+1);
+}
 
 
 const increment = () =>{
@@ -49,7 +58,6 @@ const getRandomSongName = () =>{
 
 
 
-
 useEffect(()=>{
     // Set token
     console.log(hash);
@@ -72,7 +80,13 @@ useEffect(()=>{
         <Login/>
       )}
       {render && <>
-          <Quiz key={songNum} song={songNum} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songList={currentSong.song.items} songName={currentSong.song.items[songNum]} />
+          <header>
+          <h1>
+            Guess Your Spotify
+          </h1>
+          <div>{songCount}/12</div>
+        </header>
+          <Quiz key={songNum} song={songNum} incSong={incSongCount} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songList={currentSong.song.items} songName={currentSong.song.items[songNum]} />
         </>}
     {authToken.token && (<>
       <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
