@@ -2,7 +2,7 @@ import {React, useState, useEffect} from 'react'
 import "./PlayerButton.css"
 import { Button } from './Button'
 
-const PlayerButton = ({children, type, buttons, onClick, buttonStyle, buttonSize, link, songplaying}) => {
+const PlayerButton = ({children, type, buttons, onClick, buttonStyle, buttonSize, link, songplaying, incCorrect}) => {
   const [className,setClassName] = useState('unclicked')
   const [click,setclick] = useState(false)
   const [butn, setbutn] = useState(buttons)
@@ -14,6 +14,7 @@ const PlayerButton = ({children, type, buttons, onClick, buttonStyle, buttonSize
       console.log("ok")
       setClassName("correct-ans");
       console.log(className);
+     incCorrect()
     }
     setclick(!click);
   }

@@ -4,7 +4,7 @@ import Player from './Player'
 import PlayerButton from './PlayerButton';
 import './Quiz.css'
 
-const playedSongs = new Set();
+//const playedSongs = new Set();
 let buttons = [0,1,2,3,4];
 
 const Quiz = (props) => {
@@ -15,6 +15,7 @@ const reload = ()=>{props.rand();}
   const [guessSong, setGuessSong] = useState(props.songName);
   
   const [num, setNum] = useState(false)
+
 
   
   const inc = () =>{
@@ -47,9 +48,9 @@ const reload = ()=>{props.rand();}
     for(let i = 0; i < buttons.length; i++){
         buttons[i] = Math.floor(Math.random()*50)
     }
-    if(buttons)
-    buttons[Math.floor(Math.random()*5)] = props.song
- 
+    if(!buttons.includes(props.song)){
+      buttons[Math.floor(Math.random()*5)] = props.song
+    }
      console.log(buttons);
      
 }
@@ -102,11 +103,11 @@ const reload = ()=>{props.rand();}
       
 
       <div>
-        <PlayerButton songplaying = {props.songName}>{getButtonInfo([buttons[0]])}</PlayerButton>
-        <PlayerButton key={num} songplaying = {props.songName}>{getButtonInfo([buttons[1]])}</PlayerButton>
-        <PlayerButton songplaying = {props.songName}>{getButtonInfo(buttons[2])}</PlayerButton>
-        <PlayerButton songplaying = {props.songName}>{getButtonInfo(buttons[3])}</PlayerButton>
-        <PlayerButton songplaying = {props.songName}>{getButtonInfo(buttons[4])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo([buttons[0]])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} key={num} songplaying = {props.songName}>{getButtonInfo([buttons[1]])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo(buttons[2])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo(buttons[3])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo(buttons[4])}</PlayerButton>
       </div>
     </div>
   )
