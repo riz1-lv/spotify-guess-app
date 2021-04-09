@@ -13,10 +13,12 @@ const reload = ()=>{props.rand();}
 
 
   const [guessSong, setGuessSong] = useState(props.songName);
-  
+  const [disabled,setDisabled] = useState("")
   const [num, setNum] = useState(false)
 
-
+  function Disabler()  {
+    setDisabled("true");
+  }
   
   const inc = () =>{
     setNum(!num);
@@ -97,15 +99,13 @@ const reload = ()=>{props.rand();}
       <Button onClick={props.inc}>next Song</Button>
       <Button onClick={props.dec}>prev Song</Button>
       <Button onClick={()=>{props.rand(); props.incSong()}}>random Song</Button>
-      <Button onClick={()=>getButtonTitles}>ra Song</Button>
-      <Button onClick={inc}>reset buttn</Button>
       <Button onClick={()=>console.log(buttons)}>buttons</Button>
       
 
       <div>
-        <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo([buttons[0]])}</PlayerButton>
-        <PlayerButton incCorrect={props.increaseNumCorrect} key={num} songplaying = {props.songName}>{getButtonInfo([buttons[1]])}</PlayerButton>
-        <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo(buttons[2])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} disabled={disabled} disabler = {Disabler} songplaying = {props.songName}>{getButtonInfo([buttons[0]])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} disabled={disabled}   key={num} songplaying = {props.songName}>{getButtonInfo([buttons[1]])}</PlayerButton>
+        <PlayerButton incCorrect={props.increaseNumCorrect} disabled={disabled}  songplaying = {props.songName}>{getButtonInfo(buttons[2])}</PlayerButton>
         <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo(buttons[3])}</PlayerButton>
         <PlayerButton incCorrect={props.increaseNumCorrect} songplaying = {props.songName}>{getButtonInfo(buttons[4])}</PlayerButton>
       </div>

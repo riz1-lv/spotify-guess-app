@@ -3,18 +3,23 @@ import "./PlayerButton.css"
 import { Button } from './Button'
 
 const PlayerButton = ({children, type, buttons, onClick, buttonStyle, buttonSize, link, songplaying, incCorrect}) => {
-  const [className,setClassName] = useState('unclicked')
+  const [className,setClassName] = useState('clicked')
   const [click,setclick] = useState(false)
   const [butn, setbutn] = useState(buttons)
- 
-
+  const [disabled,setDisabled] = useState()
+  const x = document.getElementsByClassName('unclicked btn  btn--primary btn--medium');
   const clicker = () =>{
     console.log("clicked")
+  
     if(children.includes(songplaying.name)){
-      console.log("ok")
       setClassName("correct-ans");
       console.log(className);
      incCorrect()
+     setDisabled(true)
+    }
+    for (let i = 0; i < x.length; i++) {
+      x[i].disabled="true"
+      x[i].classList.add("unselectable")
     }
     setclick(!click);
   }
@@ -24,7 +29,7 @@ const PlayerButton = ({children, type, buttons, onClick, buttonStyle, buttonSize
   },[buttons,butn])
 
   return ( <>
-      <Button classesName={click ? className : 'clicked' } buttonStyle={buttonStyle} buttonSize={buttonSize} onClick={clicker} type={type} link={link} children={children}>
+      <Button  classesName={click ? 'quizbtn '+className : 'unclicked'} buttonStyle={buttonStyle} buttonSize={buttonSize} disabled={disabled} onClick={clicker} type={type} link={link} children={children}>
         {children}</Button>
       </>
   )

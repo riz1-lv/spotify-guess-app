@@ -1,14 +1,25 @@
-.unclicked.btn--primary{
+.clicked.btn--primary{
     background-color: red;
-    color:#242424;
+    color:#ffffff;
     border: 1px solid red;
     
 }
-.clicked{
-}
-
+.unclicked{}
 .correct-ans.btn--primary{
     background-color: green;
     border: 1px solid green;
     color:#ffffff;
+}
+
+.unselectable{
+    background-color: rgb(63, 63, 63);
+    color: rgb(131, 131, 131);
+    border: 1px solid  rgb(49, 48, 42);
+    transition: all 0.3s ease-out;
+}
+.unselectable:hover{
+    background-color: rgb(63, 63, 63);
+    color: rgb(131, 131, 131);
+    border: 1px solid  rgb(49, 48, 42);
+    
 }
