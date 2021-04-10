@@ -94,15 +94,13 @@ const reload = ()=>{props.rand();}
 
   return (
     <div>
-     
-      <Player source={props.songList[props.song].preview_url} />
-      <Button onClick={props.inc}>next Song</Button>
-      <Button onClick={props.dec}>prev Song</Button>
-      <Button onClick={()=>{props.rand(); props.incSong()}}>random Song</Button>
-      <Button onClick={()=>console.log(buttons)}>buttons</Button>
-      
+      <div className="next-container">
+        <Button className="next-button" onClick={()=>{props.rand(); props.incSong()}}>➞</Button>
+      </div>
 
-      <div>
+      <Player source={props.songList[props.song].preview_url} />
+      
+      <div className="quiz-buttons">
         <PlayerButton incCorrect={props.increaseNumCorrect} disabled={disabled} disabler = {Disabler} songplaying = {props.songName}>{getButtonInfo([buttons[0]])}</PlayerButton>
         <PlayerButton incCorrect={props.increaseNumCorrect} disabled={disabled}   key={num} songplaying = {props.songName}>{getButtonInfo([buttons[1]])}</PlayerButton>
         <PlayerButton incCorrect={props.increaseNumCorrect} disabled={disabled}  songplaying = {props.songName}>{getButtonInfo(buttons[2])}</PlayerButton>

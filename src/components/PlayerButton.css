@@ -4,7 +4,10 @@
     border: 1px solid red;
     
 }
-.unclicked{}
+.unclicked{
+    
+}
+
 .correct-ans.btn--primary{
     background-color: green;
     border: 1px solid green;
@@ -21,5 +24,4 @@
     background-color: rgb(63, 63, 63);
     color: rgb(131, 131, 131);
     border: 1px solid  rgb(49, 48, 42);
-    
 }

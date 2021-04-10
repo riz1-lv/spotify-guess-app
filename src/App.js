@@ -4,12 +4,18 @@ import "./App.css";
 import {getTopTracks} from './spotifyData.js'
 import Login from "./components/Login.js";
 import Quiz from "./components/Quiz.js";
+import { Button } from './components/Button.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import './components/Login.css'
+
 
 let numCorrect=0;
 
  const App = () => {
   const [authToken,setAuthToken] = useState({token:null});
   const [render,setRender] = useState(false);
+  const [completed,setCompleted] = useState(false);
   const [songNum, setSongNum] = useState(Math.floor(Math.random()*50));
   const [songCount,setSongCount] = useState(1);
   const [currentSong,setCurrentSong] = useState({
@@ -19,9 +25,7 @@ let numCorrect=0;
 });
 
 
-if(songCount===12){
-  setRender(false)
-}
+
 
 const increaseNumCorrect = () =>{
   numCorrect++;
@@ -63,7 +67,11 @@ const getRandomSongName = () =>{
   return randName;
 }
 
-
+useEffect(() => {
+  if(songCount===12){
+    setCompleted(true)
+  }
+}, [songCount])
 
 useEffect(()=>{
     // Set token
@@ -87,21 +95,26 @@ useEffect(()=>{
         <Login/>
       )}
       {render && <>
-          <header>
+          <header id="title">
           <h1>
             Guess Your Spotify
           </h1>
           <div>{songCount}/12</div>
         </header>
-          <Quiz key={songNum} song={songNum} increaseNumCorrect={increaseNumCorrect} incSong={incSongCount} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songList={currentSong.song.items} songName={currentSong.song.items[songNum]} />
+          <div className={completed? "quiz":""}>
+            <Quiz key={songNum} song={songNum} increaseNumCorrect={increaseNumCorrect} incSong={incSongCount} rand={random} dec={decrement} inc={increment} getRandName={getRandomSongName} songList={currentSong.song.items} songName={currentSong.song.items[songNum]} />
+          </div>
         </>}
-    {authToken.token && (<>
-      <button onClick={() => {console.log(currentSong); console.log(authToken)}}>state</button>
-    </> 
-    )}
-      <div className={authToken.token ? 'player active' : 'player'}>
-      <button onClick={()=>{setRender(true); console.log(songNum)}}>play 30 sec clip</button>
-        
+        {completed && <div>
+            <h1>
+              {`Congragulations you got ${numCorrect} correct! `} 
+            </h1>   
+            <Button className="btn-twitter" link={'https://twitter.com/intent/tweet?hashtags=GuessYourSpotify&&text=' +
+              encodeURIComponent(' Find out how well you know your top spotify songs ')} buttonStyle="btn--primary"><FontAwesomeIcon icon={faTwitter} /></Button>
+          </div>}
+    
+      <div id="start-btn" className={authToken.token ? 'player active' : 'player'}>
+        <Button onClick={()=>{setRender(true); console.log(songNum); document.getElementById("start-btn").style.display="none"}}>Start Quiz</Button>
       </div>
       </div>
     </div>

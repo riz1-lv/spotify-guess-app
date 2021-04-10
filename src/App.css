@@ -1,5 +1,6 @@
 * {
   font-family: 'Roboto', sans-serif;
+  overflow: hidden; 
 }
 
 .App {
@@ -19,7 +20,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: rgb(251,16,16);
+background: linear-gradient(351deg, rgba(251,16,16,1) 0%, rgba(89,48,159,1) 89%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,3 +31,25 @@
   color: white;
 }
 
+#title{
+  margin-top: 120px;
+}
+#start-btn > a > .btn--medium:hover{
+  background: rgb(189,63,251);
+  background: linear-gradient(90deg, rgba(189,63,251,1) 0%, rgba(146,70,252,1) 100%);
+  color:#ffffff;
+  transition: all 0.3s linear;
+  border:none;
+  padding: 20px 40px;
+}
+
+#start-btn > a > .btn--medium{
+  transition: all 0.3s linear;
+  border:none;
+}
+
+
+
+.quiz{
+  display: none;
+}

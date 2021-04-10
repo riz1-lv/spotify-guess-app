@@ -1,0 +1,15 @@
+.next-container{
+  display: flex;
+  align-items: right;
+  justify-content: center;
+  margin-left: 1000px;
+  margin-bottom: 75px;
+}
+.next-container > a > button{
+  padding: 20px 25px;
+  font-size: 24px;
+}
+
+.quiz-buttons{
+  margin-bottom: 200px;
+}
