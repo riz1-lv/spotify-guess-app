@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/spotify-guess-app/static/css/main.4e3f3b45.chunk.css",
+    "main.js": "/spotify-guess-app/static/js/main.215ef912.chunk.js",
+    "main.js.map": "/spotify-guess-app/static/js/main.215ef912.chunk.js.map",
+    "runtime-main.js": "/spotify-guess-app/static/js/runtime-main.1da903b6.js",
+    "runtime-main.js.map": "/spotify-guess-app/static/js/runtime-main.1da903b6.js.map",
+    "static/js/2.a24a4e75.chunk.js": "/spotify-guess-app/static/js/2.a24a4e75.chunk.js",
+    "static/js/2.a24a4e75.chunk.js.map": "/spotify-guess-app/static/js/2.a24a4e75.chunk.js.map",
+    "static/js/3.305309fa.chunk.js": "/spotify-guess-app/static/js/3.305309fa.chunk.js",
+    "static/js/3.305309fa.chunk.js.map": "/spotify-guess-app/static/js/3.305309fa.chunk.js.map",
+    "index.html": "/spotify-guess-app/index.html",
+    "static/css/main.4e3f3b45.chunk.css.map": "/spotify-guess-app/static/css/main.4e3f3b45.chunk.css.map",
+    "static/js/2.a24a4e75.chunk.js.LICENSE.txt": "/spotify-guess-app/static/js/2.a24a4e75.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1da903b6.js",
+    "static/js/2.a24a4e75.chunk.js",
+    "static/css/main.4e3f3b45.chunk.css",
+    "static/js/main.215ef912.chunk.js"
+  ]
+}
